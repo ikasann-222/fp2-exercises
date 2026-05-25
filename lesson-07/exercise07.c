@@ -29,10 +29,10 @@ int main(void) {
 
     /* TODO 1: LedPattern を n 個分 malloc で確保する */
     /* ヒント: malloc(個数 * sizeof(型))  */
-    LedPattern *patterns = /* ここを書く */;
+    LedPattern *patterns = malloc(n * sizeof(LedPattern));
 
     /* TODO 2: NULL チェック（確保失敗への対処） */
-    if (/* ここを書く */) {
+    if (patterns == NULL) {
         fprintf(stderr, "メモリ確保に失敗しました\n");
         return 1;
     }
@@ -40,20 +40,20 @@ int main(void) {
     /* TODO 3: n 個分のパターンを入力する */
     for (int i = 0; i < n; i++) {
         printf("パターン%d — ピン番号: ", i + 1);
-        scanf("%d", /* ここを書く */);
+        scanf("%d", &patterns[i].pin);
         printf("パターン%d — 点灯時間(ms): ", i + 1);
-        scanf("%d", /* ここを書く */);
+        scanf("%d", &patterns[i].duration);
     }
 
     /* TODO 4: 登録したパターンを順番に表示する */
     printf("\n--- 登録した LED シーケンス ---\n");
     for (int i = 0; i < n; i++) {
         printf("パターン%d: ピン%dを%dms点灯\n",
-               /* ここを書く */);
+            i + 1, patterns[i].pin, patterns[i].duration);
     }
 
     /* TODO 5: malloc で確保したメモリを解放する */
-    /* ここを書く */
+    free(patterns);
 
     printf("\nプログラム終了\n");
     return 0;
